@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: Aeroportos API
+version: 1.0
+
+/destinos:
+  get:
+    displayName: Listar destinos
+    responses:
+      200:
+        body:
+          application/json:
+  /{id}:
+    get:
+      displayName: Obter informação de destino
+      responses:
+        200:
+          body:
+            application/json:
