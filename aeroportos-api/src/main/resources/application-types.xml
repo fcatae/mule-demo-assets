@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="rotas" format="json">
+      <types:shape format="weave" example="examples/rota-1.json"><![CDATA[%dw 2.0
+
+type rotas = {|
+  id: Number {"typeId": "int"}, 
+  aviao: String, 
+  origem: String, 
+  destino: String, 
+  data: String
+|} {"example": "{\"id\":1,\"aviao\":\"Boeing 787\",\"origem\":\"MUA\",\"destino\":\"LAX\",\"data\":\"2016-01-20T00:00:00\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#484dd5fe-ae3f-4607-b624-e006ca2bc653">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="rotas"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#b9b39a01-ae58-4a03-a939-2c59108820b8">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="rotas[]"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

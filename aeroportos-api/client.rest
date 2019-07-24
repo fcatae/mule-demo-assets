@@ -1,0 +1,17 @@
+### WSDL
+http://mu.learn.mulesoft.com/delta?wsdl
+
+###
+GET http://localhost:8081/api/destinos
+
+###
+GET http://localhost:8081/api/destinos/1
+
+###
+GET http://aeroportos-api.us-e2.cloudhub.io/api/destinos
+
+###
+GET http://aeroportos.us-e2.cloudhub.io/aeroportos-api.us-e2.cloudhub.io/api/destinos
+
+###
+
