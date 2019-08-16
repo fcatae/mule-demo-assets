@@ -1,0 +1,50 @@
+#%RAML 1.0 Library
+usage: Defines order datatypes
+
+uses:
+  Phone: /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/phone-datatype/1.0.0/phone-datatype.raml
+  Address: /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/address-datatype/1.0.0/address-datatype.raml
+  Email: /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/email-datatype/1.0.0/email-datatype.raml
+
+types:
+  message:
+    properties:
+      message: string
+      id?: string
+      mdmId?: string
+      name?: string
+      messageCode?: string
+      stackTrace?: string
+
+  orderLineItem:
+    properties:
+      productId: number
+      productName?: string
+      mdmId?: string
+      quantitiyOnHand?: integer
+      quantitySafetyStock?: integer
+      price?: number
+      discountPct?: number
+      createDateTime?: string
+      lastModifiedDateTime?: string
+
+  order:
+    properties:
+      sourceSystem?: string
+      orderId?: string
+      customerId?: string
+      customerName?: string
+      contactName?: string
+      contactPhone?: Phone.phone
+      contactEmail?: Email.email
+      billingAddress?: Address.address
+      shippingAddress?: Address.address
+      createDateTime?: string
+      lastModifiedDateTime?: string
+      trackingNumber?: string
+      status?: string
+      totalPrice?: string
+      orderLineItems:
+        type: array
+        items: orderLineItem
+        minItems: 1

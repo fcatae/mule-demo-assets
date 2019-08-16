@@ -1,0 +1,96 @@
+#%RAML 1.0 NamedExample
+collection:
+  value:
+  - sourceSystem: SAP
+    orderId: "1"
+    customerId: id-21323
+    customerName: Roeder Consulting
+    contactName: Brett Roeder
+    contactPhone:
+      type: Office
+      phoneNumber: "678-122-2323"
+    contactEmail:
+      type: Work
+      address: brettRoeder@gmail.com
+    billingAddress:
+      use: work
+      line:
+        - 3460 Preston Ridge Road
+        - Suite 575
+      city: Alpharetta
+      state: GA
+      postalCode: "30005"
+      country: USA
+    shippingAddress:
+      use: home
+      line:
+        - 257 Stone Park Drive
+      city: Woodstock
+      state: GA
+      postalCode: "30188"
+      country: USA
+    createDateTime: "2014-08-07T01:02:03"
+    lastModifiedDateTime: "2016-01-01T12:13:14"
+    orderLineItems:
+      - productId: 123
+        productName: Amazon Echo
+        quantitiyOnHand: 103
+        quantitySafetyStock: 20
+        price: 49.99
+        discountPct: 5
+        createDateTime: "2014-08-07T01:02:03"
+        lastModifiedDateTime: "2016-01-01T12:13:14"
+      - productId: 11
+        productName: SONOS Play:5
+        quantitiyOnHand: 51
+        quantitySafetyStock: 10
+        price: 499.99
+        discountPct: 0
+        createDateTime: "2014-08-07T01:02:03"
+        lastModifiedDateTime: "2016-01-01T12:13:14"
+  - sourceSystem: Salesforce
+    orderId: "id-q34qwer-qer-qewrqw"
+    customerId: id-21323
+    customerName: BA Manufacturing
+    contactName: Matias Suarez
+    contactPhone:
+      type: Office
+      phoneNumber: "678-122-2323"
+    contactEmail:
+      type: Work
+      address: msuarez@gmail.com
+    billingAddress:
+      use: work
+      line:
+        - 3460 Preston Ridge Road
+      city: Alpharetta
+      state: GA
+      postalCode: "30005"
+      country: USA
+    shippingAddress:
+      use: home
+      line:
+        - 257 Stone Park Drive
+      city: Woodstock
+      state: GA
+      postalCode: "30188"
+      country: USA
+    createDateTime: "2014-08-07T01:02:03"
+    lastModifiedDateTime: "2016-01-01T12:13:14"
+    orderLineItems:
+      - productId: 11
+        productName: Amazon Echo
+        quantitiyOnHand: 103
+        quantitySafetyStock: 20
+        price: 49.99
+        discountPct: 5
+        createDateTime: "2014-08-07T01:02:03"
+        lastModifiedDateTime: "2016-01-01T12:13:14"
+      - productId: 12
+        productName: SONOS Play:5
+        quantitiyOnHand: 51
+        quantitySafetyStock: 10
+        price: 499.99
+        discountPct: 0
+        createDateTime: "2014-08-07T01:02:03"
+        lastModifiedDateTime: "2016-01-01T12:13:14"

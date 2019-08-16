@@ -1,0 +1,133 @@
+#%RAML 1.0
+title: Order API
+version: 1.0.0
+baseUri: https://localhost:8081/api
+mediaType: [ application/xml, application/json ]
+
+traits:
+  headers: !include /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/rest-headers-trait/1.0.0/rest-headers-trait.raml
+  collection: !include /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/pageable-trait/1.0.0/pageable-trait.raml
+  client-id-secured: !include /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/client-id-secured-trait/1.0.0/client-id-secured.raml
+
+uses:
+  Order: /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/order-datatype/1.0.0/order-datatype-library.raml
+  Error: /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/error-datatype/1.0.0/error-datatype.raml
+  OrderResponse: /exchange_modules/0e229a88-3ef8-4488-81ce-a05f50628a91/general-element-datatype/1.0.0/general-element-datatype.raml
+
+types:
+  objectName: Order.order
+
+/orders:
+  get:
+    is: [ headers, collection, client-id-secured ]
+    description: Get all orders
+    queryParameters:
+      customerId:
+        required: true
+        example: c71d6e4a-4d35-47c7-9eef-bb4783b98b30
+        type: string
+      trackingNumber:
+        required: false
+        type: string
+    responses:
+      200:
+        body:
+          application/json:
+            type: objectName[]
+            examples: !include examples/collection.raml
+  post:
+    is: [ headers, client-id-secured ]
+    body:
+      application/json:
+        type: objectName
+        examples: !include examples/single.raml
+    responses:
+      201:
+        description: Created
+        body:
+          application/json:
+            type: OrderResponse.element
+            example: |
+              { "id": "27679" }
+  /{id}:
+    uriParameters:
+      id:
+        type: string
+        example: "1"
+        description: Represents the order unique id
+    get:
+      is: [ headers, client-id-secured ]
+      description: Get order by ID
+      responses:
+        200:
+          body:
+            application/json:
+              type: objectName
+              examples: !include examples/single.raml
+        400:
+          body:
+            application/json:
+              type: Error.error
+              example: |
+                {
+                  "message": "Bad message"
+                }
+        401:
+          body:
+            application/json:
+              type: Error.error
+              example: |
+                {
+                  "message": "Unauthorized"
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "message": "Resource not found"
+                }
+    put:
+      is: [ headers, client-id-secured ]
+      body:
+        application/json:
+          type: objectName
+          examples: !include examples/single.raml
+      responses:
+        204:
+        401:
+          body:
+            application/json:
+              type: Error.error
+              example: |
+                {
+                  "message": "Unauthorized"
+                }
+        404:
+          body:
+            application/json:
+              type: Error.error
+              example: |
+                {
+                  "message": "Resource not found"
+                }
+    delete:
+      is: [ headers, client-id-secured ]
+      responses:
+        204:
+        401:
+          body:
+            application/json:
+              type: Error.error
+              example: |
+                {
+                  "message": "Unauthorized"
+                }
+        404:
+          body:
+            application/json:
+              type: Error.error
+              example: |
+                {
+                  "message": "Resource not found"
+                }

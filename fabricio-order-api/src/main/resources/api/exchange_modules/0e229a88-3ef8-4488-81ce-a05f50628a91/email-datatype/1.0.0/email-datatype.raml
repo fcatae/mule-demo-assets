@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+usage: Defines standard structure of an email address
+
+types: 
+  email:
+    properties:
+      type: string
+      address: 
+        type: string
+        example: brettroeder@company.com
+      preferred: 
+        type: boolean
+        required: false
+        default: false
+        example: false
